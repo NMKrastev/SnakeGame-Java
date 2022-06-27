@@ -3,12 +3,22 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'javac SnakeGame.java'
+                sh script:'''
+                    #!/bin/bash
+                    ls
+                    cd ./src
+                    ls
+                    javac SnakeGame.java
+                   '''
             }
         }
         stage ('Run') {
             steps {
-                sh 'java SnakeGame'
+                sh script:'''
+                    #!/bin/bash
+                    cd ./src
+                    java SnakeGame
+                    '''
             }
         }
     }
