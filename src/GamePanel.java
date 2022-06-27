@@ -64,6 +64,10 @@ public class GamePanel extends JPanel implements ActionListener {
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 }
             }
+            g.setColor(Color.red);
+            g.setFont(new Font("Helvetica", Font.BOLD, 25));
+            FontMetrics metrics = getFontMetrics(g.getFont());
+            g.drawString("Score: " + appleEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: " + appleEaten)) / 2, g.getFont().getSize());
         } else {
             gameOver(g);
         }
@@ -134,11 +138,16 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void gameOver(Graphics g) {
+        //Score
+        g.setColor(Color.red);
+        g.setFont(new Font("Helvetica", Font.BOLD, 25));
+        FontMetrics metricsScore = getFontMetrics(g.getFont());
+        g.drawString("Score: " + appleEaten, (SCREEN_WIDTH - metricsScore.stringWidth("Score: " + appleEaten)) / 2, g.getFont().getSize());
         //Game Over text
         g.setColor(Color.red);
         g.setFont(new Font("Helvetica", Font.BOLD, 75));
-        FontMetrics metrics = getFontMetrics(g.getFont());
-        g.drawString("Game Over!", (SCREEN_WIDTH - metrics.stringWidth("Game Over!")) / 2, SCREEN_HEIGHT / 2);
+        FontMetrics metricsGameOver = getFontMetrics(g.getFont());
+        g.drawString("Game Over!", (SCREEN_WIDTH - metricsGameOver.stringWidth("Game Over!")) / 2, SCREEN_HEIGHT / 2);
     }
 
     @Override
