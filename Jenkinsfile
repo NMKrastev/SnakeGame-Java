@@ -1,3 +1,4 @@
+def module = [:]
 pipeline {
     agent any
     stages {
@@ -14,11 +15,16 @@ pipeline {
         }
         stage ('Run') {
             steps {
-                sh script:'''
+                script {
+                    module.first = load "Xvfb.groovy"
+                    module.first.Xvfb()
+                    sh script:'''
                     #!/bin/bash
                     cd ./src
                     java SnakeGame
                     '''
+
+                }
             }
         }
     }
