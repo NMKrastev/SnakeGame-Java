@@ -10,20 +10,10 @@ pipeline {
             steps {
                 sh './mvnw test'
             }
-            post {
-                success {
-                    echo 'TESTS PASSED'
-                }
-            }
         }
         stage ('Publish') {
             steps {
                 sh './mvnw package'
-            }
-            post {
-                success {
-                    echo 'PACKAGE SUCCESSFUL'
-                }
             }
         }
         stage ('Install') {
